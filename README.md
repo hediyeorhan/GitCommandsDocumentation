@@ -42,7 +42,7 @@ To run the add and commit commands on a single line, use :
   git commit -am "commit message"
   ```
 
-The **rm** command deletes files in the directory, the **mv** command changes the file name. It is used to move files.
+The ***rm*** command deletes files in the directory, the ***mv*** command changes the file name. It is used to move files.
 
 If we want to get the files back after adding them with git add command:
 
@@ -51,7 +51,7 @@ If we want to get the files back after adding them with git add command:
   git checkout --filename
   ```
 
-In Git, the **status** command is used to check if there is a change in the project that has not been committed.
+In Git, the ***status*** command is used to check if there is a change in the project that has not been committed.
 
 ```ini
   git status # Shows current git status. It shows if the current directory is linked to any git.
@@ -112,8 +112,49 @@ Commits from different branches are also not visible to each other.
 
 Fast forwarding: It is the process of merge the changes made in a branch derived / created from the master branch to the master.
 
-**When there are conflicting codes in both branches: when the other branch is merged while in the master branch, the changes in the other branch are written to the file in the master branch.**
+***When there are conflicting codes in both branches: when the other branch is merged while in the master branch, the changes in the other branch are written to the file in the master branch.***
 
-When a file deleted in the master is modified in the other branch and merge is desired, the **merge conflic** situation arises because there is no file in the master.
+When a file deleted in the master is modified in the other branch and merge is desired, the ***merge conflic*** situation arises because there is no file in the master.
 
-**!!! To merge any two branches, there must be no overlap.**
+***!!! To merge any two branches, there must be no overlap.***
+
+To restore the file from the last commit : 
+
+```ini
+  git restore filename
+  ```
+
+Git can store changes that are not added and committed on itself with ***stash***. When done in this way, the changes are not visible in the 'git status' command.
+Git stores it inside itself and we can retrieve it whenever we want.
+
+```ini
+  git stash  # Hiding the file that was not committed.
+  ```
+
+To get the information stored in git stash back into files in our project : 
+
+```ini
+  git stash pop  # It brings it back and deletes it from the list.
+  ```
+
+When different changes are made in a row, all stashes are listed and kept in ids.
+
+```ini
+  git stash list  # It shows what we keep up to date.
+  ```
+
+If we want to add stashes one by one : 
+
+```ini
+  git stash apply stash_id  # It does not delete it from the list.
+  ```
+
+Clear all stash : 
+
+```ini
+  git stash clear
+  ```
+
+<h5> Returning to past commits </h5>
+
+will continue ..
