@@ -78,6 +78,13 @@ A .gitignore file should be created to hide the files in our local directory tha
   touch .gitignore # You can find .gitignore templates on Google according to the technology you use.
   ```
 
+If the files we added to our .gitignore file are not hidden and are being uploaded to github, we can use : 
+
+```ini
+  git rm --cached file_name
+  git commit -m "cache cleared"
+  ```
+
 "Branch" are independent workspaces that represent different development paths of the project. Branches are used to track and test different features or enhancements of the project, or to allow different teams to work on different tasks.
 
 Head indicates / points to which branch and which commit we are on.
@@ -155,6 +162,124 @@ Clear all stash :
   git stash clear
   ```
 
-<h5> Returning to past commits </h5>
+<h3> Returning to past commits </h3>
 
-will continue ..
+To return to an old commit : 
+
+```ini
+  git log # From here, the hash code of the desired commit can be obtained.
+  git checkout commit_hash_code
+  ```
+
+When returning to an old commit, the ***'HEAD detached'*** branch is switched to instead of the master branch.
+You can go back to the master branch with the git switch command. Or a new branch can be created and the edits of the old commit can be kept here.
+
+To return to the commit only one step before : 
+
+```ini
+  git reset HEAD~1
+  ```
+
+The ***reset*** command can be used to delete all commits after the specified commit from the ***git log*** history. However, this command only deletes commits from the commit history and does not delete the changes made to the commits deleted in the project. 
+
+```ini
+  git reset commit_hash_code
+  ```
+
+Changes made to the project by commits deleted with the ***hard*** parameter can also be deleted.
+
+```ini
+  git reset --hard commit_hash_code
+  ```
+
+The ***revert*** command is used to keep commits in the commit history and only delete changes from the project. It undoes the actions and creates a new commit. It does not delete commits in the ***git log*** history.
+
+```ini
+  git revert commit_hash_code  # The project gets this commit back.
+  ```
+
+To see changes/differences between two commits or in a project, use : 
+
+```ini
+  git diff HEAD # What shows differently according to the last commit.
+
+  git diff commit1_hash_code commit2_hash_code # It shows the difference between two commits.
+
+  git diff commit1_hash_code : commit2_hash_code # It can also be used this way.
+  ```
+
+To see the difference between the two branches : 
+
+```ini
+  git diff branch1_name branch2_name
+
+  git diff branch1_name : branch2_name
+  ```
+
+To clear the logs and rewrite the date and get rid of merge commits in between : 
+
+```ini
+  git switch branch1_name
+  git rebase branch2_name  # First the commits in branch2 are sorted, then the commits in branch1 are sorted.
+  ```
+
+<h3> Uploading the project to github </h3>
+
+To upload our local project to Github, a github repo must first be created. Afterwards, we can check the updates of the additions and commits we made in the project with git status. 
+The remote command should be used to remotely connect to the repository we created.
+
+```ini
+  git remote add origin github_repo_url.git # The term "origin" represents the repo url for easier use in later commands. 
+  ```
+
+After the remote connection is established, the ***push*** command is used to upload our local files to github.
+
+```ini
+  git push -u origin main # If your branch name is different, it can be changed. For example: master, feat .. 
+  ```
+
+Here, when the ***push*** command is executed, you are asked to log in to your github account from the terminal screen or browser.
+
+If main / master branch will be pushed, only ***git push*** command will be enough. If a different branch is to be pushed, the ***git push origin branch_name*** command should be used.
+
+*** PULL REQUEST ***
+
+It is a request to modify a repo that belongs to someone else. Or someone else's request to modify a repo that belongs to me.
+
+In order to see the changes we made in the project on Github on local, we need to pull the project to local. 
+Branches on Github are considered remote branches. To list these branches, you can use : 
+
+```ini
+  git branch -r 
+  ```
+
+To pull the final version of the project from github to local : 
+
+```ini
+  git fetch # Can be used when merge is not desired.
+  ```
+
+To navigate between remote branches, use : 
+
+```ini
+  git checkout origin/branch_name
+  ```
+
+To merge the current version of the project that we have localized from Github : 
+
+```ini
+  git pull 
+  ```
+
+*** git pull = git fetch + git merge ***
+
+*** push -> sends to Github ***
+*** pull -> pulls from Github. ***
+
+To pull a repo that belongs to someone else and make changes to it, we need to ***fork*** that repo on Github so that it is listed among our own repos. Then we should clone it to our local repository by getting the url address among our own repos.
+
+```ini
+  git clone repo_url.git # Move repo to local
+  ```
+
+*** This way we can push and pull this repo. ***
