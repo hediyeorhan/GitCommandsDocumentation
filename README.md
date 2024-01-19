@@ -242,7 +242,7 @@ Here, when the ***push*** command is executed, you are asked to log in to your g
 
 If main / master branch will be pushed, only ***git push*** command will be enough. If a different branch is to be pushed, the ***git push origin branch_name*** command should be used.
 
-*** PULL REQUEST ***
+***PULL REQUEST***
 
 It is a request to modify a repo that belongs to someone else. Or someone else's request to modify a repo that belongs to me.
 
@@ -271,10 +271,11 @@ To merge the current version of the project that we have localized from Github :
   git pull 
   ```
 
-*** git pull = git fetch + git merge ***
+***git pull = git fetch + git merge***
 
-*** push -> sends to Github ***
-*** pull -> pulls from Github. ***
+***push -> sends to Github***
+
+***pull -> pulls from Github.***
 
 To pull a repo that belongs to someone else and make changes to it, we need to ***fork*** that repo on Github so that it is listed among our own repos. Then we should clone it to our local repository by getting the url address among our own repos.
 
@@ -282,4 +283,4 @@ To pull a repo that belongs to someone else and make changes to it, we need to *
   git clone repo_url.git # Move repo to local
   ```
 
-*** This way we can push and pull this repo. ***
+***This way we can push and pull this repo.***
